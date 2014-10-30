@@ -1,15 +1,15 @@
 ﻿Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroLite.Extensions.Cryptography.NET35", "MicroLite.Extensions.Cryptography\MicroLite.Extensions.Cryptography.NET35.csproj", "{5752EFB1-D752-4158-B19E-911F395C3F31}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroLite.Extensions.Cryptography.Tests.NET35", "MicroLite.Extensions.Cryptography.Tests\MicroLite.Extensions.Cryptography.Tests.NET35.csproj", "{833FFCCA-D16F-4575-8130-46B1AB6AC97C}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{A7E60ADA-82A9-4B7D-81DE-2AEA5CD8F7D6}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroLite.Extensions.Cryptography.NET35", "MicroLite.Extensions.Cryptography\MicroLite.Extensions.Cryptography.NET35.csproj", "{5752EFB1-D752-4158-B19E-911F395C3F31}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroLite.Extensions.Cryptography.Tests.NET35", "MicroLite.Extensions.Cryptography.Tests\MicroLite.Extensions.Cryptography.Tests.NET35.csproj", "{833FFCCA-D16F-4575-8130-46B1AB6AC97C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
