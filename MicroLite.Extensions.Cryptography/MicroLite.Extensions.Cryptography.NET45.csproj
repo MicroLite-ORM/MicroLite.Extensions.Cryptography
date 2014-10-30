@@ -22,11 +22,11 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS;NET_4_5</DefineConstants>
+    <OutputPath>bin\Debug\NET45\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NET_4_5</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\MicroLite.Extensions.Cryptography.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\NET45\MicroLite.Extensions.Cryptography.xml</DocumentationFile>
     <RunCodeAnalysis>true</RunCodeAnalysis>
     <CodeAnalysisRuleSet>..\MicroLite.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
@@ -34,11 +34,11 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <OutputPath>bin\Release\NET45\</OutputPath>
+    <DefineConstants>TRACE;NET_4_5</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\MicroLite.Extensions.Cryptography.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\NET45\MicroLite.Extensions.Cryptography.xml</DocumentationFile>
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <CodeAnalysisRuleSet>..\MicroLite.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
