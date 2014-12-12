@@ -40,7 +40,7 @@
   <ItemGroup>
     <Reference Include="MicroLite, Version=6.0.0.0, Culture=neutral, PublicKeyToken=08410e6798c4fa37, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MicroLite.6.0.0-rc\lib\net35-client\MicroLite.dll</HintPath>
+      <HintPath>..\packages\MicroLite.6.0.0\lib\net35-client\MicroLite.dll</HintPath>
     </Reference>
     <Reference Include="Moq">
       <HintPath>..\packages\Moq.4.2.1409.1722\lib\net35\Moq.dll</HintPath>
