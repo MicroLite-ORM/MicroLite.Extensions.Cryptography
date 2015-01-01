@@ -13,7 +13,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>MicroORM ORM POCO Database Cryptography</tags>
     <dependencies>
-      <dependency id="MicroLite" version="6.0.0" />
+      <dependency id="MicroLite" version="6.1.0" />
     </dependencies>
   </metadata>
   <files>
