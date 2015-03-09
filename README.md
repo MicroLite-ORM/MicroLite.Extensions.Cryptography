@@ -1,6 +1,8 @@
 MicroLite.Extensions.Cryptography
 =================================
 
+[![NuGet version](https://badge.fury.io/nu/MicroLite.Extensions.Cryptography.svg)](http://badge.fury.io/nu/MicroLite.Extensions.Cryptography)
+
 _MicroLite.Extensions.Cryptography_ is an extension to the MicroLite ORM Framework which allows MicroLite to encrypt and decrypt values as they are written to or read from a database.
 
 In order to use the extension, you first need to install it via NuGet:
