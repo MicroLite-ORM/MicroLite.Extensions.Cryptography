@@ -41,7 +41,7 @@ if ($version)
 }
 
 # Run the psake build script to create the release binaries
-Import-Module (Join-Path $scriptPath packages\psake.4.4.1\tools\psake.psm1) -ErrorAction SilentlyContinue
+Import-Module (Join-Path $scriptPath packages\psake.4.6.0\tools\psake.psm1) -ErrorAction SilentlyContinue
 
 Invoke-psake (Join-Path $scriptPath default.ps1)
 
@@ -49,14 +49,6 @@ Remove-Module psake -ErrorAction SilentlyContinue
 
 if ($version)
 {
-	Write-Host "Update NuGet.exe" -ForegroundColor Green
-	& $nuGetExe Update -self
-
-	if (Test-Path "$nuGetExe.old")
-	{
-  		Remove-Item -force "$nuGetExe.old" -ErrorAction SilentlyContinue
-	}
-
 	Write-Host "Pack $nuSpec -> $nuGetPackage" -ForegroundColor Green
 	& $nuGetExe Pack $nuSpec -Version $version -OutputDirectory $buildDir -BasePath $buildDir
 
