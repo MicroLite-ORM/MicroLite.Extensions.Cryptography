@@ -1,6 +1,6 @@
 ﻿// -----------------------------------------------------------------------
 // <copyright file="DbEncryptedStringTypeConverter.cs" company="MicroLite">
-// Copyright 2012 - 2015 Project Contributors
+// Copyright 2012 - 2017 Project Contributors
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -36,7 +36,7 @@ namespace MicroLite.TypeConverters
         {
             if (algorithmProvider == null)
             {
-                throw new ArgumentNullException("algorithmProvider");
+                throw new ArgumentNullException(nameof(algorithmProvider));
             }
 
             this.algorithmProvider = algorithmProvider;
@@ -66,12 +66,12 @@ namespace MicroLite.TypeConverters
         {
             if (type == null)
             {
-                throw new ArgumentNullException("type");
+                throw new ArgumentNullException(nameof(type));
             }
 
             if (value == DBNull.Value)
             {
-                return (DbEncryptedString)null;
+                return null;
             }
 
             var stringValue = (string)value;
@@ -99,17 +99,17 @@ namespace MicroLite.TypeConverters
         {
             if (reader == null)
             {
-                throw new ArgumentNullException("reader");
+                throw new ArgumentNullException(nameof(reader));
             }
 
             if (type == null)
             {
-                throw new ArgumentNullException("type");
+                throw new ArgumentNullException(nameof(type));
             }
 
             if (reader.IsDBNull(index))
             {
-                return (DbEncryptedString)null;
+                return null;
             }
 
             var stringValue = reader.GetString(index);
@@ -134,12 +134,14 @@ namespace MicroLite.TypeConverters
         /// <returns>An instance of the corresponding database type containing the value.</returns>
         public object ConvertToDbValue(object value, Type type)
         {
-            if (value == null || string.IsNullOrEmpty(value.ToString()))
+            var stringValue = value?.ToString();
+
+            if (string.IsNullOrEmpty(stringValue))
             {
                 return value;
             }
 
-            return this.Encrypt(value.ToString());
+            return this.Encrypt(stringValue);
         }
 
         private string Decrypt(string cipherText)

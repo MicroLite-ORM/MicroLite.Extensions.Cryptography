@@ -1,6 +1,6 @@
 ﻿// -----------------------------------------------------------------------
 // <copyright file="SymmetricAlgorithmProvider.cs" company="MicroLite">
-// Copyright 2012 - 2015 Project Contributors
+// Copyright 2012 - 2017 Project Contributors
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -50,12 +50,12 @@ namespace MicroLite.Infrastructure
         {
             if (string.IsNullOrEmpty(algorithmName))
             {
-                throw new ArgumentNullException("algorithmName");
+                throw new ArgumentNullException(nameof(algorithmName));
             }
 
             if (algorithmKey == null)
             {
-                throw new ArgumentNullException("algorithmKey");
+                throw new ArgumentNullException(nameof(algorithmKey));
             }
 
             this.algorithm = algorithmName;

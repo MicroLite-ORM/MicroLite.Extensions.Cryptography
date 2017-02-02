@@ -1,6 +1,6 @@
 ﻿// -----------------------------------------------------------------------
 // <copyright file="DbEncryptedString.cs" company="MicroLite">
-// Copyright 2012 - 2015 Project Contributors
+// Copyright 2012 - 2017 Project Contributors
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -45,7 +45,7 @@ namespace MicroLite
         /// <returns>A string containing the value of the DbEncryptedString.</returns>
         public static implicit operator string(DbEncryptedString dbEncryptedString)
         {
-            return dbEncryptedString == null ? null : dbEncryptedString.value;
+            return dbEncryptedString?.value;
         }
 
         /// <summary>
