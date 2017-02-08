@@ -76,7 +76,7 @@ namespace MicroLite.TypeConverters
 
             var stringValue = (string)value;
 
-#if NET_3_5
+#if NET35
             if (string.IsNullOrEmpty(stringValue))
 #else
             if (string.IsNullOrWhiteSpace(stringValue))
@@ -114,7 +114,7 @@ namespace MicroLite.TypeConverters
 
             var stringValue = reader.GetString(index);
 
-#if NET_3_5
+#if NET35
             if (string.IsNullOrEmpty(stringValue))
 #else
             if (string.IsNullOrWhiteSpace(stringValue))
