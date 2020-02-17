@@ -1,6 +1,6 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="AppSettingSymmetricAlgorithmProvider.cs" company="MicroLite">
-// Copyright 2012 - 2017 Project Contributors
+// <copyright file="AppSettingSymmetricAlgorithmProvider.cs" company="Project Contributors">
+// Copyright Project Contributors
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -10,12 +10,12 @@
 //
 // </copyright>
 // -----------------------------------------------------------------------
+using System.Configuration;
+using System.Text;
+using MicroLite.Extensions.Cryptography;
+
 namespace MicroLite.Infrastructure
 {
-    using System.Configuration;
-    using System.Text;
-    using MicroLite.Extensions.Cryptography;
-
     /// <summary>
     /// An implementation of <see cref="ISymmetricAlgorithmProvider"/> which reads the values to use from the app.config.
     /// </summary>
@@ -27,8 +27,8 @@ namespace MicroLite.Infrastructure
         /// <exception cref="MicroLiteException">Thrown if the expected configuration values are missing in the app.config.</exception>
         public AppSettingSymmetricAlgorithmProvider()
         {
-            var key = ConfigurationManager.AppSettings["MicroLite.DbEncryptedString.EncryptionKey"];
-            var algorithm = ConfigurationManager.AppSettings["MicroLite.DbEncryptedString.SymmetricAlgorithm"];
+            string key = ConfigurationManager.AppSettings["MicroLite.DbEncryptedString.EncryptionKey"];
+            string algorithm = ConfigurationManager.AppSettings["MicroLite.DbEncryptedString.SymmetricAlgorithm"];
 
             if (string.IsNullOrEmpty(key))
             {
@@ -40,7 +40,7 @@ namespace MicroLite.Infrastructure
                 throw new MicroLiteException(ExceptionMessages.AppSettingSymmetricAlgorithmProvider_MissingAlgorithm);
             }
 
-            this.Configure(algorithm, Encoding.ASCII.GetBytes(key));
+            Configure(algorithm, Encoding.ASCII.GetBytes(key));
         }
     }
 }

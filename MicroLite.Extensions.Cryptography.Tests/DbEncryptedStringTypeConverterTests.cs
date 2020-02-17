@@ -86,7 +86,7 @@
             [Fact]
             public void TheDbEncryptedStringShouldBeNull()
             {
-                Assert.Equal(null, this.result);
+                Assert.Null(this.result);
             }
         }
 
@@ -176,7 +176,7 @@
             [Fact]
             public void TheDbEncryptedStringShouldBeNull()
             {
-                Assert.Equal(null, this.result);
+                Assert.Null(this.result);
             }
         }
 

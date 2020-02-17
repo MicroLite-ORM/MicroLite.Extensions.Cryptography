@@ -1,6 +1,6 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="SymmetricAlgorithmProvider.cs" company="MicroLite">
-// Copyright 2012 - 2017 Project Contributors
+// <copyright file="SymmetricAlgorithmProvider.cs" company="Project Contributors">
+// Copyright Project Contributors
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -10,18 +10,18 @@
 //
 // </copyright>
 // -----------------------------------------------------------------------
+using System;
+using System.Security.Cryptography;
+
 namespace MicroLite.Infrastructure
 {
-    using System;
-    using System.Security.Cryptography;
-
     /// <summary>
     /// A base class for ISymmetricAlgorithmProvider implementations.
     /// </summary>
     public abstract class SymmetricAlgorithmProvider : ISymmetricAlgorithmProvider
     {
-        private string algorithm;
-        private byte[] keyBytes;
+        private string _algorithm;
+        private byte[] _keyBytes;
 
         /// <summary>
         /// Creates an instance of the symmetric algorithm to be used for encryption and decryption.
@@ -29,11 +29,10 @@ namespace MicroLite.Infrastructure
         /// <returns>
         /// An instance of the required symmetric algorithm.
         /// </returns>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "This is a factory method, the caller is responsible for disposal of the object.")]
         public SymmetricAlgorithm CreateAlgorithm()
         {
-            var symmetricAlgorithm = SymmetricAlgorithm.Create(this.algorithm);
-            symmetricAlgorithm.Key = this.keyBytes;
+            var symmetricAlgorithm = SymmetricAlgorithm.Create(_algorithm);
+            symmetricAlgorithm.Key = _keyBytes;
 
             return symmetricAlgorithm;
         }
@@ -53,13 +52,13 @@ namespace MicroLite.Infrastructure
                 throw new ArgumentNullException(nameof(algorithmName));
             }
 
-            if (algorithmKey == null)
+            if (algorithmKey is null)
             {
                 throw new ArgumentNullException(nameof(algorithmKey));
             }
 
-            this.algorithm = algorithmName;
-            this.keyBytes = algorithmKey;
+            _algorithm = algorithmName;
+            _keyBytes = algorithmKey;
         }
     }
 }
