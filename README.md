@@ -1,9 +1,13 @@
 MicroLite.Extensions.Cryptography
 =================================
 
-[![NuGet version](https://badge.fury.io/nu/MicroLite.Extensions.Cryptography.svg)](http://badge.fury.io/nu/MicroLite.Extensions.Cryptography)
+|Service|Status|
+|-------|------|
+||[![NuGet version](https://badge.fury.io/nu/MicroLite.Extensions.Cryptography.svg)](http://badge.fury.io/nu/MicroLite.Extensions.Cryptography)|
+|/develop|[![Build Status](https://dev.azure.com/trevorpilley/MicroLite-ORM/_apis/build/status/MicroLite-ORM.MicroLite.Extensions.Cryptography?branchName=develop)](https://dev.azure.com/trevorpilley/MicroLite-ORM/_build/latest?definitionId=32&branchName=develop)|
+|/master|[![Build Status](https://dev.azure.com/trevorpilley/MicroLite-ORM/_apis/build/status/MicroLite-ORM.MicroLite.Extensions.Cryptography?branchName=master)](https://dev.azure.com/trevorpilley/MicroLite-ORM/_build/latest?definitionId=32&branchName=master)|
 
-_MicroLite.Extensions.Cryptography_ is an extension to the MicroLite ORM Framework which allows MicroLite to encrypt and decrypt values as they are written to or read from a database.
+MicroLite.Extensions.Cryptography is a .NET 4.5 library which adds an extension for the MicroLite ORM Framework to encrypt and decrypt values as they are written to or read from a database.
 
 In order to use the extension, you first need to install it via NuGet:
 
@@ -45,7 +49,7 @@ It is then possible to instantiate the `DbEncryptedStringTypeConverter` with the
 
     using MicroLite.Infrastructure;
     using MicroLite.TypeConverter;
- 
+
     TypeConverter.Converters.Add(
         new DbEncryptedStringTypeConverter(
             new AppSettingSymmetricAlgorithmProvider()));
@@ -53,11 +57,9 @@ It is then possible to instantiate the `DbEncryptedStringTypeConverter` with the
     // Then the usual configuration for MicroLite
     Configure.Fluently()...
 
-## Supported .NET Framework Versions
+### Supported .NET Versions
 
 The NuGet Package contains binaries compiled against:
 
-* .NET 3.5 (Client Profile)
-* .NET 4.0 (Client Profile)
-* .NET 4.5
-* .NET 4.6
+* .NET Framework 4.5
+* - MicroLite 6.3.1
