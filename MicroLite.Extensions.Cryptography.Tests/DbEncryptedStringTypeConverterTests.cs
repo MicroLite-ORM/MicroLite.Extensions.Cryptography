@@ -191,12 +191,7 @@
                 var mockAlgorithmProvider = new Mock<ISymmetricAlgorithmProvider>();
                 mockAlgorithmProvider.Setup(x => x.CreateAlgorithm()).Returns(() =>
                 {
-#if!NET35
                     var algorithm = SymmetricAlgorithm.Create("AesManaged");
-#else
-                    var algorithm = SymmetricAlgorithm.Create("Rijndael");
-#endif
-
                     algorithm.Key = Encoding.ASCII.GetBytes("bru$3atheM-pey+=!a5ebr7d6Tru@E?4");
 
                     return algorithm;
@@ -272,11 +267,7 @@
                 var mockAlgorithmProvider = new Mock<ISymmetricAlgorithmProvider>();
                 mockAlgorithmProvider.Setup(x => x.CreateAlgorithm()).Returns(() =>
                 {
-#if!NET35
                     var algorithm = SymmetricAlgorithm.Create("AesManaged");
-#else
-                    var algorithm = SymmetricAlgorithm.Create("Rijndael");
-#endif
                     algorithm.Key = Encoding.ASCII.GetBytes("bru$3atheM-pey+=!a5ebr7d6Tru@E?4");
 
                     return algorithm;
