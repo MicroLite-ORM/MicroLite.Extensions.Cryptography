@@ -1,6 +1,5 @@
-# MicroLite.Extensions.Cryptography
-
-##Status
+MicroLite.Extensions.Cryptography
+===================================
 
 |Service|Status|
 |-------|------|
@@ -8,13 +7,13 @@
 |/develop|[![Build Status](https://dev.azure.com/trevorpilley/MicroLite-ORM/_apis/build/status/MicroLite-ORM.MicroLite.Extensions.Cryptography?branchName=develop)](https://dev.azure.com/trevorpilley/MicroLite-ORM/_build/latest?definitionId=32&branchName=develop)|
 |/master|[![Build Status](https://dev.azure.com/trevorpilley/MicroLite-ORM/_apis/build/status/MicroLite-ORM.MicroLite.Extensions.Cryptography?branchName=master)](https://dev.azure.com/trevorpilley/MicroLite-ORM/_build/latest?definitionId=32&branchName=master)|
 
+MicroLite.Extensions.Cryptography is a .NET 4.5 library which adds an extension for the MicroLite ORM Framework to encrypt and decrypt values as they are written to or read from a database.
+
 ## Installation
 
 Install the nuget package `Install-Package MicroLite.Extensions.Cryptography`
 
-## Summary
-
-MicroLite.Extensions.Cryptography is a .NET 4.5 library which adds an extension for the MicroLite ORM Framework to encrypt and decrypt values as they are written to or read from a database.
+## Configuration
 
 The extension contains the `DbEncryptedString` class which allows you to have a property value automatically encrypted upon write to and decrypted upon read from the database.
 
