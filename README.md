@@ -28,7 +28,7 @@ The DbEncryptedString class provides automatic conversion from a .NET string cla
 
     var thing = new Thing { SecureData = "My Secret data..." };
 
-Once the object is saved to the database (via `ISession.Insert()` or `ISession.Update()`) the column will contain the Base64 encoded cipher text (encrypted value). When the object is read from the database it will be decrypted and the clear text will be visible in the property.
+Once the object is saved to the database (via `ISession.InsertAsync()` or `ISession.UpdateAsync()`) the column will contain the Base64 encoded cipher text (encrypted value). When the object is read from the database it will be decrypted and the clear text will be visible in the property.
 
 The encrypted value will look something along the lines of `MlZPjm49IKNGtOQoHAAgEa2+ycQHzXk8FIRbJ/SQ/BM=@ngWykCGsVyD/aD8ZWIhXWw==`
 
