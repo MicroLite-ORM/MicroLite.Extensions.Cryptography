@@ -1,11 +1,12 @@
 MicroLite.Extensions.Cryptography
 ===================================
 
-|Service|Status|
+![Nuget](https://img.shields.io/nuget/dt/MicroLite.Extensions.Cryptography)
+
+|Branch|Status|
 |-------|------|
-||[![NuGet version](https://badge.fury.io/nu/MicroLite.Extensions.Cryptography.svg)](http://badge.fury.io/nu/MicroLite.Extensions.Cryptography)|
-|/develop|[![Build Status](https://dev.azure.com/trevorpilley/MicroLite-ORM/_apis/build/status/MicroLite-ORM.MicroLite.Extensions.Cryptography?branchName=develop)](https://dev.azure.com/trevorpilley/MicroLite-ORM/_build/latest?definitionId=32&branchName=develop)|
-|/master|[![Build Status](https://dev.azure.com/trevorpilley/MicroLite-ORM/_apis/build/status/MicroLite-ORM.MicroLite.Extensions.Cryptography?branchName=master)](https://dev.azure.com/trevorpilley/MicroLite-ORM/_build/latest?definitionId=32&branchName=master)|
+|/develop|![GitHub last commit (branch)](https://img.shields.io/github/last-commit/MicroLite-ORM/MicroLite.Extensions.Cryptography/develop) [![Build Status](https://dev.azure.com/trevorpilley/MicroLite-ORM/_apis/build/status/MicroLite-ORM.MicroLite.Extensions.Cryptography?branchName=develop)](https://dev.azure.com/trevorpilley/MicroLite-ORM/_build/latest?definitionId=32&branchName=develop) ![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/MicroLite)|
+|/master|![GitHub last commit](https://img.shields.io/github/last-commit/MicroLite-ORM/MicroLite.Extensions.Cryptography/master) [![Build Status](https://dev.azure.com/trevorpilley/MicroLite-ORM/_apis/build/status/MicroLite-ORM.MicroLite.Extensions.Cryptography?branchName=master)](https://dev.azure.com/trevorpilley/MicroLite-ORM/_build/latest?definitionId=32&branchName=master) ![GitHub Release Date](https://img.shields.io/github/release-date/MicroLite-ORM/MicroLite.Extensions.Cryptography)|
 
 MicroLite.Extensions.Cryptography is a .NET 4.5 library which adds an extension for the MicroLite ORM Framework to encrypt and decrypt values as they are written to or read from a database.
 
