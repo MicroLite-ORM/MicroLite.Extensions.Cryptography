@@ -1,13 +1,19 @@
-MicroLite.Extensions.Cryptography
-=================================
+# MicroLite.Extensions.Cryptography
 
-[![NuGet version](https://badge.fury.io/nu/MicroLite.Extensions.Cryptography.svg)](http://badge.fury.io/nu/MicroLite.Extensions.Cryptography)
+MicroLite.Extensions.Cryptography is a .NET 4.5 library which adds an extension for the MicroLite ORM Framework to encrypt and decrypt values as they are written to or read from a database.
 
-_MicroLite.Extensions.Cryptography_ is an extension to the MicroLite ORM Framework which allows MicroLite to encrypt and decrypt values as they are written to or read from a database.
+![Nuget](https://img.shields.io/nuget/dt/MicroLite.Extensions.Cryptography)
 
-In order to use the extension, you first need to install it via NuGet:
+|Branch|Status|
+|------|------|
+|/develop|![GitHub last commit (branch)](https://img.shields.io/github/last-commit/MicroLite-ORM/MicroLite.Extensions.Cryptography/develop) [![Build Status](https://dev.azure.com/trevorpilley/MicroLite-ORM/_apis/build/status/MicroLite-ORM.MicroLite.Extensions.Cryptography?branchName=develop)](https://dev.azure.com/trevorpilley/MicroLite-ORM/_build/latest?definitionId=32&branchName=develop) ![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/MicroLite.Extensions.Cryptography)|
+|/master|![GitHub last commit](https://img.shields.io/github/last-commit/MicroLite-ORM/MicroLite.Extensions.Cryptography/master) [![Build Status](https://dev.azure.com/trevorpilley/MicroLite-ORM/_apis/build/status/MicroLite-ORM.MicroLite.Extensions.Cryptography?branchName=master)](https://dev.azure.com/trevorpilley/MicroLite-ORM/_build/latest?definitionId=32&branchName=master) ![Nuget](https://img.shields.io/nuget/v/MicroLite.Extensions.Cryptography) ![GitHub Release Date](https://img.shields.io/github/release-date/MicroLite-ORM/MicroLite.Extensions.Cryptography)|
 
-    Install-Package MicroLite.Extensions.Cryptography
+## Installation
+
+Install the nuget package `Install-Package MicroLite.Extensions.Cryptography`
+
+## Configuration
 
 The extension contains the `DbEncryptedString` class which allows you to have a property value automatically encrypted upon write to and decrypted upon read from the database.
 
@@ -22,7 +28,7 @@ The DbEncryptedString class provides automatic conversion from a .NET string cla
 
     var thing = new Thing { SecureData = "My Secret data..." };
 
-Once the object is saved to the database (via `ISession.Insert()` or `ISession.Update()`) the column will contain the Base64 encoded cipher text (encrypted value). When the object is read from the database it will be decrypted and the clear text will be visible in the property.
+Once the object is saved to the database (via `ISession.InsertAsync()` or `ISession.UpdateAsync()`) the column will contain the Base64 encoded cipher text (encrypted value). When the object is read from the database it will be decrypted and the clear text will be visible in the property.
 
 The encrypted value will look something along the lines of `MlZPjm49IKNGtOQoHAAgEa2+ycQHzXk8FIRbJ/SQ/BM=@ngWykCGsVyD/aD8ZWIhXWw==`
 
@@ -45,7 +51,7 @@ It is then possible to instantiate the `DbEncryptedStringTypeConverter` with the
 
     using MicroLite.Infrastructure;
     using MicroLite.TypeConverter;
- 
+
     TypeConverter.Converters.Add(
         new DbEncryptedStringTypeConverter(
             new AppSettingSymmetricAlgorithmProvider()));
@@ -53,11 +59,9 @@ It is then possible to instantiate the `DbEncryptedStringTypeConverter` with the
     // Then the usual configuration for MicroLite
     Configure.Fluently()...
 
-## Supported .NET Framework Versions
+## Supported .NET Versions
 
-The NuGet Package contains binaries compiled against:
+The NuGet Package contains binaries compiled against (dependencies indented):
 
-* .NET 3.5 (Client Profile)
-* .NET 4.0 (Client Profile)
-* .NET 4.5
-* .NET 4.6
+* .NET Framework 4.5
+  * MicroLite 7.0.0

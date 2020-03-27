@@ -1,6 +1,6 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="ISymmetricAlgorithmProvider.cs" company="MicroLite">
-// Copyright 2012 - 2017 Project Contributors
+// <copyright file="ISymmetricAlgorithmProvider.cs" company="Project Contributors">
+// Copyright Project Contributors
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -10,10 +10,10 @@
 //
 // </copyright>
 // -----------------------------------------------------------------------
+using System.Security.Cryptography;
+
 namespace MicroLite.Infrastructure
 {
-    using System.Security.Cryptography;
-
     /// <summary>
     /// The interface for a class which can provide an <see cref="SymmetricAlgorithm"/>.
     /// </summary>

@@ -1,6 +1,6 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="DbEncryptedStringTypeConverter.cs" company="MicroLite">
-// Copyright 2012 - 2017 Project Contributors
+// <copyright file="DbEncryptedStringTypeConverter.cs" company="Project Contributors">
+// Copyright Project Contributors
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -10,23 +10,23 @@
 //
 // </copyright>
 // -----------------------------------------------------------------------
+using System;
+using System.Data;
+using System.IO;
+using System.Security.Cryptography;
+using MicroLite.Extensions.Cryptography;
+using MicroLite.Infrastructure;
+
 namespace MicroLite.TypeConverters
 {
-    using System;
-    using System.Data;
-    using System.IO;
-    using System.Security.Cryptography;
-    using MicroLite.Extensions.Cryptography;
-    using MicroLite.Infrastructure;
-
     /// <summary>
     /// An ITypeConverter which can encrypt and decrypt a string which ensures that the cypher text is stored in the database but the
     /// clear text is used in the object.
     /// </summary>
     public sealed class DbEncryptedStringTypeConverter : ITypeConverter
     {
-        private readonly ISymmetricAlgorithmProvider algorithmProvider;
-        private readonly Type dbEncryptedStringType = typeof(DbEncryptedString);
+        private readonly ISymmetricAlgorithmProvider _algorithmProvider;
+        private readonly Type _dbEncryptedStringType = typeof(DbEncryptedString);
 
         /// <summary>
         /// Initialises a new instance of the <see cref="DbEncryptedStringTypeConverter"/> class.
@@ -34,14 +34,14 @@ namespace MicroLite.TypeConverters
         /// <param name="algorithmProvider">The symmetric algorithm provider to be used.</param>
         public DbEncryptedStringTypeConverter(ISymmetricAlgorithmProvider algorithmProvider)
         {
-            if (algorithmProvider == null)
+            if (algorithmProvider is null)
             {
                 throw new ArgumentNullException(nameof(algorithmProvider));
             }
 
-            this.algorithmProvider = algorithmProvider;
+            _algorithmProvider = algorithmProvider;
 
-            TypeConverter.RegisterTypeMapping(this.dbEncryptedStringType, DbType.String);
+            TypeConverter.RegisterTypeMapping(_dbEncryptedStringType, DbType.String);
         }
 
         /// <summary>
@@ -51,10 +51,7 @@ namespace MicroLite.TypeConverters
         /// <returns>
         ///   <c>true</c> if this instance can convert the specified type; otherwise, <c>false</c>.
         /// </returns>
-        public bool CanConvert(Type type)
-        {
-            return type == this.dbEncryptedStringType;
-        }
+        public bool CanConvert(Type type) => type == _dbEncryptedStringType;
 
         /// <summary>
         /// Converts the specified database value into an instance of the specified type.
@@ -64,7 +61,7 @@ namespace MicroLite.TypeConverters
         /// <returns>An instance of the specified type containing the specified value.</returns>
         public object ConvertFromDbValue(object value, Type type)
         {
-            if (type == null)
+            if (type is null)
             {
                 throw new ArgumentNullException(nameof(type));
             }
@@ -74,18 +71,14 @@ namespace MicroLite.TypeConverters
                 return null;
             }
 
-            var stringValue = (string)value;
+            string stringValue = (string)value;
 
-#if NET35
-            if (string.IsNullOrEmpty(stringValue))
-#else
             if (string.IsNullOrWhiteSpace(stringValue))
-#endif
             {
                 return (DbEncryptedString)stringValue;
             }
 
-            return (DbEncryptedString)this.Decrypt(stringValue);
+            return (DbEncryptedString)Decrypt(stringValue);
         }
 
         /// <summary>
@@ -97,12 +90,12 @@ namespace MicroLite.TypeConverters
         /// <returns>An instance of the specified type containing the specified value.</returns>
         public object ConvertFromDbValue(IDataReader reader, int index, Type type)
         {
-            if (reader == null)
+            if (reader is null)
             {
                 throw new ArgumentNullException(nameof(reader));
             }
 
-            if (type == null)
+            if (type is null)
             {
                 throw new ArgumentNullException(nameof(type));
             }
@@ -112,18 +105,14 @@ namespace MicroLite.TypeConverters
                 return null;
             }
 
-            var stringValue = reader.GetString(index);
+            string stringValue = reader.GetString(index);
 
-#if NET35
-            if (string.IsNullOrEmpty(stringValue))
-#else
             if (string.IsNullOrWhiteSpace(stringValue))
-#endif
             {
                 return (DbEncryptedString)stringValue;
             }
 
-            return (DbEncryptedString)this.Decrypt(stringValue);
+            return (DbEncryptedString)Decrypt(stringValue);
         }
 
         /// <summary>
@@ -134,19 +123,19 @@ namespace MicroLite.TypeConverters
         /// <returns>An instance of the corresponding database type containing the value.</returns>
         public object ConvertToDbValue(object value, Type type)
         {
-            var stringValue = value?.ToString();
+            string stringValue = value?.ToString();
 
             if (string.IsNullOrEmpty(stringValue))
             {
                 return value;
             }
 
-            return this.Encrypt(stringValue);
+            return Encrypt(stringValue);
         }
 
         private string Decrypt(string cipherText)
         {
-            var index = cipherText.IndexOf('@');
+            int index = cipherText.IndexOf('@');
 
             if (index == -1)
             {
@@ -156,11 +145,11 @@ namespace MicroLite.TypeConverters
             byte[] cipherBytes = Convert.FromBase64String(cipherText.Substring(0, index));
             byte[] ivBytes = Convert.FromBase64String(cipherText.Substring(index + 1, cipherText.Length - (index + 1)));
 
-            using (var algorithm = this.algorithmProvider.CreateAlgorithm())
+            using (SymmetricAlgorithm algorithm = _algorithmProvider.CreateAlgorithm())
             {
                 algorithm.IV = ivBytes;
 
-                var decryptor = algorithm.CreateDecryptor();
+                ICryptoTransform decryptor = algorithm.CreateDecryptor();
 
                 MemoryStream memoryStream = null;
                 CryptoStream cryptoStream = null;
@@ -193,19 +182,18 @@ namespace MicroLite.TypeConverters
             }
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times", Justification = "Ignored for now, it shouldn't blow up and the suggested fix means we can't then access the memory stream!")]
         private string Encrypt(string clearText)
         {
             byte[] cipherBytes = null;
             byte[] ivBytes;
 
-            using (var algorithm = this.algorithmProvider.CreateAlgorithm())
+            using (SymmetricAlgorithm algorithm = _algorithmProvider.CreateAlgorithm())
             {
                 algorithm.GenerateIV();
 
                 ivBytes = algorithm.IV; // should we use the IV bytes from the previous value if one exists?
 
-                var encryptor = algorithm.CreateEncryptor();
+                ICryptoTransform encryptor = algorithm.CreateEncryptor();
 
                 using (var memoryStream = new MemoryStream())
                 {

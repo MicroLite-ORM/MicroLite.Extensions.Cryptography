@@ -1,6 +1,6 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="DbEncryptedString.cs" company="MicroLite">
-// Copyright 2012 - 2017 Project Contributors
+// <copyright file="DbEncryptedString.cs" company="Project Contributors">
+// Copyright Project Contributors
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -10,10 +10,10 @@
 //
 // </copyright>
 // -----------------------------------------------------------------------
+using System;
+
 namespace MicroLite
 {
-    using System;
-
     /// <summary>
     /// A class which represents a string which is encrypted before being written to the database
     /// and decrypted after being read from the database.
@@ -21,106 +21,61 @@ namespace MicroLite
     [System.Diagnostics.DebuggerDisplay("{value}")]
     public sealed class DbEncryptedString : IEquatable<DbEncryptedString>, IEquatable<string>
     {
-        private readonly string value;
+        private readonly string _value;
 
-        private DbEncryptedString(string value)
-        {
-            this.value = value;
-        }
+        private DbEncryptedString(string value) => _value = value;
 
         /// <summary>
         /// Returns a DbEncryptedString containing the value of the specified string.
         /// </summary>
         /// <param name="value">The string to convert value.</param>
         /// <returns>A DbEncryptedString containing the value of the specified string.</returns>
-        public static implicit operator DbEncryptedString(string value)
-        {
-            return value == null ? null : new DbEncryptedString(value);
-        }
+        public static implicit operator DbEncryptedString(string value) => value == null ? null : new DbEncryptedString(value);
 
         /// <summary>
         /// Returns a string containing the value of the DbEncryptedString.
         /// </summary>
         /// <param name="dbEncryptedString">The db encrypted string.</param>
         /// <returns>A string containing the value of the DbEncryptedString.</returns>
-        public static implicit operator string(DbEncryptedString dbEncryptedString)
-        {
-            return dbEncryptedString?.value;
-        }
+        public static implicit operator string(DbEncryptedString dbEncryptedString) => dbEncryptedString?._value;
 
-        /// <summary>
-        /// Determines whether the specified <see cref="System.Object" /> is equal to this instance.
-        /// </summary>
-        /// <param name="obj">The <see cref="System.Object" /> to compare with this instance.</param>
-        /// <returns>
-        ///   <c>true</c> if the specified <see cref="System.Object" /> is equal to this instance; otherwise, <c>false</c>.
-        /// </returns>
+        /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-            var dbEncryptedString = obj as DbEncryptedString;
-
-            if (dbEncryptedString != null)
+            if (obj is DbEncryptedString dbEncryptedString)
             {
-                return this.Equals(dbEncryptedString);
+                return Equals(dbEncryptedString);
             }
 
-            return this.Equals(obj as string);
+            return Equals(obj as string);
         }
 
-        /// <summary>
-        /// Indicates whether the current object is equal to another object of the same type.
-        /// </summary>
-        /// <param name="other">An object to compare with this object.</param>
-        /// <returns>
-        /// true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.
-        /// </returns>
+        /// <inheritdoc/>
         public bool Equals(DbEncryptedString other)
         {
-            if (other == null)
+            if (other is null)
             {
                 return false;
             }
 
-            return this.Equals(other.value);
+            return Equals(other._value);
         }
 
-        /// <summary>
-        /// Indicates whether the current object is equal to another object of the same type.
-        /// </summary>
-        /// <param name="other">An object to compare with this object.</param>
-        /// <returns>
-        /// true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.
-        /// </returns>
+        /// <inheritdoc/>
         public bool Equals(string other)
         {
-            if (other == null)
+            if (other is null)
             {
                 return false;
             }
 
-            return this.value == other;
+            return _value == other;
         }
 
-        /// <summary>
-        /// Returns a hash code for this instance.
-        /// </summary>
-        /// <returns>
-        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
-        /// </returns>
-        public override int GetHashCode()
-        {
-            return this.value.GetHashCode();
-        }
+        /// <inheritdoc/>
+        public override int GetHashCode() => _value.GetHashCode();
 
-        /// <summary>
-        /// Returns a <see cref="System.String" /> that represents this instance.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="System.String" /> that represents this instance.
-        /// </returns>
-        public override string ToString()
-        {
-            return this.value;
-        }
+        /// <inheritdoc/>
+        public override string ToString() => _value;
     }
 }

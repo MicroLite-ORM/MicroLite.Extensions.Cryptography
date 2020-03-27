@@ -1,11 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroLite.Extensions.Cryptography.NET45", "MicroLite.Extensions.Cryptography\MicroLite.Extensions.Cryptography.NET45.csproj", "{5752EFB1-D752-4158-B19E-911F395C3F31}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 15.0.26124.0
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroLite.Extensions.Cryptography", "MicroLite.Extensions.Cryptography\MicroLite.Extensions.Cryptography.csproj", "{5752EFB1-D752-4158-B19E-911F395C3F31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroLite.Extensions.Cryptography.Tests.NET45", "MicroLite.Extensions.Cryptography.Tests\MicroLite.Extensions.Cryptography.Tests.NET45.csproj", "{0AE17621-10B8-47E5-AECE-07143301AAFF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroLite.Extensions.Cryptography.Tests", "MicroLite.Extensions.Cryptography.Tests\MicroLite.Extensions.Cryptography.Tests.csproj", "{0AE17621-10B8-47E5-AECE-07143301AAFF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C7DC9506-EC84-4CB1-A7CB-AD4A114FF17D}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
